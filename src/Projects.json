@@ -1,0 +1,43 @@
+[
+
+    {
+      "title": "MoodBoard",
+      "role": "Role: Web Developer",
+      "link": "https://github.com/BhattAnsh/trip-mood-board.git",
+      "website": "https://mood-board-henna.vercel.app",
+      "image": "./MoodBoard.png",
+      "theme":"#60E6A5"
+    },
+    {
+      "title": "Eventify",
+      "role": "Role: Full Stack Developer",
+      "link": "https://github.com/BhattAnsh/Eventify.git",
+      "image": "./Eventify.png",
+      "website":"https://eventify-nu.vercel.app/",
+      "theme":"#8A39EA"
+    },
+    {
+      "title": "Money Mantra",
+      "role": "Role: Frontend Developer",
+      "link": "https://github.com/BhattAnsh/Money-Mantra-Frontend.git",
+      "website": "https://money-mantra.vercel.app/",
+      "image": "./MoneyMantra.png",
+      "theme":"#C93301"
+    },
+    {
+      "title": "Social Sellers",
+      "role": "Role: Full Stack Developer",
+      "link": "https://github.com/BhattAnsh/SocialSellers.git",
+      "image": "./SocialSellers.png",
+      "website":"https://social-sellers.vercel.app/",
+      "theme":"#FEFFFE"
+    },
+    {
+      "title": "Figma Plugin",
+      "role": "Role: Full Stack Developer",
+      "link": "/figma-plugin",
+      "website": "/figma-plugin",
+      "image": "./FigmaPlugin.png",
+      "theme":"#FF6B6B"
+    }
+  ]

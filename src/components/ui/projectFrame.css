@@ -1,0 +1,8 @@
+.parent:hover .child{
+    top: 16px;
+}
+@media (min-width:786px) {
+    .parent:hover .child{
+        top: 32px;
+    }
+}
