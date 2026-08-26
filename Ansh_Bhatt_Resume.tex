@@ -1,0 +1,154 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=0.60in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{etoolbox}
+\usepackage{needspace}
+
+\pagestyle{empty}
+\raggedbottom
+\setlength{\parindent}{0pt}
+
+% ---------- GLOBAL FORMATTING ----------
+\titleformat{\section}
+  {\large\bfseries}
+  {}{0pt}{}
+  [\vspace{-0.55em}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+
+\setlist[itemize]{
+  leftmargin=1.2em,
+  itemsep=1pt,
+  topsep=2pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+  linkcolor=blue,
+  pdfborder={0 0 0}
+}
+
+% Usage: \projectlinks{github-url}{live-url}
+% Leave the second argument empty when there is no live deployment.
+\newcommand{\projectlinks}[2]{%
+  \small
+  \href{#1}{GitHub}%
+  \ifblank{#2}{}{\ $|$ \ \href{#2}{Live}}%
+  \normalsize\\[-2pt]
+}
+
+\newcommand{\projectheading}[3]{%
+  \Needspace{7\baselineskip}%
+  \textbf{#1}\\[-1pt]
+  \projectlinks{#2}{#3}%
+}
+
+\begin{document}
+
+% ---------- HEADER ----------
+\begin{center}
+  {\LARGE\textbf{Ansh Bhatt}}\\[4pt]
+  \small
+  +91-9560078250
+  \quad $|$ \quad
+  \href{mailto:anshbhatt140@gmail.com}{anshbhatt140@gmail.com}
+  \quad $|$ \quad
+  \href{https://github.com/ansh-logics}{github.com/ansh-logics}
+  \quad $|$ \quad
+  \href{https://anshbhatt.space}{anshbhatt.space}
+\end{center}
+
+% ---------- SUMMARY ----------
+\section*{Summary}
+Full-stack developer experienced in building product-focused web applications, REST APIs, microservices, real-time systems, and AI-enabled platforms. Skilled in React, Next.js, Node.js, Python, PostgreSQL, and Docker, with proven leadership and hackathon success.
+
+% ---------- TECHNICAL SKILLS ----------
+\section*{Technical Skills}
+\begin{itemize}
+  \item \textbf{Languages:} JavaScript, TypeScript, Python, C++
+  \item \textbf{Frontend:} React.js, Next.js, HTML, CSS, Tailwind CSS, Bootstrap
+  \item \textbf{Backend:} Node.js, Express.js, FastAPI, Django, Flask, REST APIs
+  \item \textbf{Databases:} PostgreSQL, MongoDB, MySQL, ArangoDB, SQLAlchemy ORM
+  \item \textbf{Tools \& DevOps:} Docker, Docker Compose, Git, GitHub, Cloudinary, FFmpeg
+  \item \textbf{AI \& Integrations:} Groq API, LLaMA 3.3-70B, Hugging Face Transformers, Figma API
+\end{itemize}
+
+% ---------- EXPERIENCE ----------
+\section*{Experience}
+
+\textbf{House of Couton Pvt. Ltd.}\hfill Jan 2025 -- Dec 2025\\
+\textit{Web Developer Intern}
+\begin{itemize}
+  \item Developed full-stack applications for marketing, human resources, and management research teams.
+  \item Translated business and research requirements into production-ready platforms using MERN, Django, Flask, and PostgreSQL.
+  \item Built scalable REST APIs, database workflows, and third-party integrations in collaboration with cross-functional teams.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Waysorted Project Experience}\\
+\textit{Backend Developer}
+\begin{itemize}
+  \item Developed the backend for a real-time Figma plugin, delivering 15+ REST APIs for authentication, synchronization, plugin operations, and Figma API integration.
+  \item Diagnosed and resolved cross-service integration issues across the plugin, web application, and Flask newsletter service by tracing authenticated product-event and subscriber workflows.
+  \item Configured and validated the seven-day inactivity email journey through a controlled canary-to-eligible-user rollout, with zero recorded delivery failures or queue backlog; established a reproducible local setup with 34 passing tests.
+\end{itemize}
+
+% ---------- PROJECTS ----------
+\section*{Projects}
+
+\projectheading
+  {MapMyFlight}
+  {https://github.com/ansh-logics/MapMyFlight.git}
+  {https://mapmyflight.anshbhatt.space}
+\begin{itemize}
+  \item \textbf{What it does:} Creates cinematic, downloadable animations of flight journeys between user-selected locations.
+  \item \textbf{Built:} Implemented route generation, aircraft motion, map transitions, video compositing, and an inline preview experience.
+  \item \textbf{Tech:} Python, React, map and geolocation APIs, FFmpeg.
+\end{itemize}
+
+\vspace{5pt}
+\projectheading
+  {Real-Time Crime Signal Detector}
+  {https://github.com/ansh-logics/RealTime-Crime-Detector.git}
+  {}
+\begin{itemize}
+  \item \textbf{What it does:} Monitors Reddit content to surface potential crime-related signals and map referenced locations for situational awareness.
+  \item \textbf{Built:} Developed the NLP pipeline, location extraction and geocoding workflow, and map-based visualization of unverified reports.
+  \item \textbf{Tech:} Python, NLP, Reddit data, geocoding and mapping APIs.
+\end{itemize}
+
+\vspace{5pt}
+\projectheading
+  {VerifAI}
+  {https://github.com/ansh-logics/VerifAI}
+  {}
+\begin{itemize}
+  \item \textbf{What it does:} Helps college placement teams compare student profiles with job descriptions through LLM-assisted analysis.
+  \item \textbf{Built:} Architected five asynchronous FastAPI services for resume, coding-profile, marksheet, and job analysis; designed the data model and file-storage workflow.
+  \item \textbf{Tech:} Next.js, FastAPI, PostgreSQL, Groq API, Cloudinary, Docker Compose.
+\end{itemize}
+
+% ---------- EDUCATION ----------
+\section*{Education}
+\textbf{Dr. A.P.J. Abdul Kalam Technical University}\hfill 2023 -- 2027\\
+B.Tech in Computer Science and Engineering\\[4pt]
+\textbf{The Union Academy Senior Secondary School}\hfill Completed 2023\\
+Senior Secondary Education (Class XII)
+
+% ---------- ACHIEVEMENTS ----------
+\section*{Achievements \& Leadership}
+\begin{itemize}
+  \item \textbf{Google Developer Groups on Campus Lead (2025--26):} Selected to lead the campus developer community and technical initiatives.
+  \item \textbf{Two-Time College Hackathon Winner:} Won two college-level hackathons by building and presenting solution-focused technology projects.
+  \item \textbf{Smart India Hackathon 2025:} Selected for the external round from a pool of 145+ teams.
+  \item \textbf{AWS Young Builders Challenge 2023:} Ranked among the top 11 teams nationally.
+  \item \textbf{Bank of Baroda $\times$ Microsoft Hackathon 2024:} Ranked among the top 20 teams nationally.
+\end{itemize}
+
+\end{document}

@@ -93,7 +93,7 @@ export function Contact() {
               {/* Left Column - Main Content */}
               <motion.div variants={itemVariants} className="space-y-8">
                 <div>
-                  <WordPullUp text="GET IN TOUCH" className="text-left px-0" />
+                  <WordPullUp text="GET IN TOUCH" className="text-left px-0 sm:px-0 lg:px-0 xl:px-0" />
                   <motion.p
                     variants={itemVariants}
                     className="text-gray-400 mt-6 max-w-lg text-lg leading-relaxed"

@@ -5,12 +5,15 @@ import { Meteors } from '../ui/meteors'
 import { WordPullUp } from '../animations/WordPullUp'
 import projects from "../../Projects.json";
 import { SiGithub } from 'react-icons/si';
-import { ExternalLink, ArrowLeft, Star, Calendar, Code } from 'lucide-react';
+import { ExternalLink, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Project {
   title: string;
   role: string;
+  description?: string;
+  built?: string;
+  tech?: string[];
   link: string;
   website: string;
   image: string;
@@ -30,7 +33,7 @@ function AllProjects() {
   };
   
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -54,13 +57,12 @@ function AllProjects() {
     }
   };
 
-  const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
-    const isEven = index % 2 === 0;
+  const ProjectCard = ({ project }: { project: Project }) => {
     
     return (
       <motion.div 
         variants={itemVariants}
-        className={`group relative w-full ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex flex-col lg:flex gap-6 lg:gap-8`}
+        className="group relative w-full flex flex-col items-stretch"
       >
         <div className="flex-1">
           <MagicCard
@@ -76,7 +78,7 @@ function AllProjects() {
             </div>
 
             {/* Card Content */}
-            <div className="relative z-10 h-full bg-neutral-900/50 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden">
+            <div className="relative z-10 h-full flex flex-col justify-between bg-neutral-900/50 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden">
               {/* Enhanced Border Beam */}
               <BorderBeam 
                 duration={8} 
@@ -88,109 +90,118 @@ function AllProjects() {
               
               {/* Header Section */}
               <div className="p-6 lg:p-8 border-b border-white/10 bg-gradient-to-br from-white/5 to-transparent">
-                <div className="flex flex-col gap-4 mb-6">
+                <div className="flex flex-col gap-3 mb-6">
                   <div className="flex items-center gap-3">
                     <div 
-                      className="w-4 h-4 rounded-full shadow-lg opacity-30 group-hover:opacity-100 transition-opacity duration-300"
+                      className="w-3.5 h-3.5 rounded-full shadow-lg opacity-40 group-hover:opacity-100 transition-opacity duration-300"
                       style={{ backgroundColor: project.theme === '#FEFFFE' ? '#8A39EA' : project.theme }}
                     ></div>
                     <h3 
-                      className="text-2xl lg:text-3xl font-bold text-gray-400 group-hover:text-white transition-all duration-300"
-                      style={{
-                        '--hover-color': project.theme === '#FEFFFE' ? '#8A39EA' : project.theme
-                      } as React.CSSProperties}
+                      className="text-2xl lg:text-3xl font-bold text-gray-300 group-hover:text-white transition-all duration-300"
                     >
                       {project.title}
                     </h3>
                   </div>
-                  <p className="text-gray-500 group-hover:text-gray-400 transition-colors duration-300">{project.role}</p>
-                  
-                  {/* Additional project details */}
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>2024</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Code className="w-4 h-4" />
-                      <span>React • TypeScript</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Star className="w-4 h-4" />
-                      <span>Featured</span>
-                    </div>
-                  </div>
+                  <p className="text-gray-400 group-hover:text-gray-300 text-sm font-medium transition-colors duration-300">{project.role}</p>
                 </div>
                 
                 {/* Action Buttons */}
-                <div className="flex gap-3">
-                  <motion.a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/btn relative overflow-hidden rounded-lg px-6 py-3 bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <SiGithub className="w-5 h-5 text-gray-500 group-hover:text-gray-300 group-hover/btn:text-white transition-colors relative z-10" />
-                    <span className="text-gray-500 group-hover/btn:text-white transition-colors relative z-10 font-medium">
-                      View Code
-                    </span>
-                    <div 
-                      className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background: `radial-gradient(circle, ${project.theme === '#FEFFFE' ? '#8A39EA' : project.theme}20, transparent 70%)`
-                      }}
-                    ></div>
-                  </motion.a>
+                <div className="flex flex-wrap gap-3">
+                  {project.link && (
+                    project.link.startsWith('/') ? (
+                      <Link
+                        to={project.link}
+                        className="group/btn relative overflow-hidden rounded-lg px-5 py-2.5 bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2"
+                      >
+                        <SiGithub className="w-4 h-4 text-gray-400 group-hover/btn:text-white transition-colors relative z-10" />
+                        <span className="text-gray-300 group-hover/btn:text-white transition-colors relative z-10 text-sm font-medium">
+                          View Project
+                        </span>
+                      </Link>
+                    ) : (
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/btn relative overflow-hidden rounded-lg px-5 py-2.5 bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2"
+                        whileHover={{ scale: 1.03, y: -1 }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        <SiGithub className="w-4 h-4 text-gray-400 group-hover/btn:text-white transition-colors relative z-10" />
+                        <span className="text-gray-300 group-hover/btn:text-white transition-colors relative z-10 text-sm font-medium">
+                          GitHub
+                        </span>
+                      </motion.a>
+                    )
+                  )}
                   
-                  <motion.a
-                    href={project.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/btn relative overflow-hidden rounded-lg px-6 py-3 bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ExternalLink className="w-5 h-5 text-gray-500 group-hover:text-gray-300 group-hover/btn:text-white transition-colors relative z-10" />
-                    <span className="text-gray-500 group-hover/btn:text-white transition-colors relative z-10 font-medium">
-                      Live Demo
-                    </span>
-                    <div 
-                      className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background: `radial-gradient(circle, ${project.theme === '#FEFFFE' ? '#8A39EA' : project.theme}20, transparent 70%)`
-                      }}
-                    ></div>
-                  </motion.a>
+                  {project.website.startsWith('/') ? (
+                    <Link
+                      to={project.website}
+                      className="group/btn relative overflow-hidden rounded-lg px-5 py-2.5 bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2"
+                    >
+                      <ExternalLink className="w-4 h-4 text-gray-400 group-hover/btn:text-white transition-colors relative z-10" />
+                      <span className="text-gray-300 group-hover/btn:text-white transition-colors relative z-10 text-sm font-medium">
+                        Explore
+                      </span>
+                    </Link>
+                  ) : (
+                    <motion.a
+                      href={project.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/btn relative overflow-hidden rounded-lg px-5 py-2.5 bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2"
+                      whileHover={{ scale: 1.03, y: -1 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <ExternalLink className="w-4 h-4 text-gray-400 group-hover/btn:text-white transition-colors relative z-10" />
+                      <span className="text-gray-300 group-hover/btn:text-white transition-colors relative z-10 text-sm font-medium">
+                        Live Demo
+                      </span>
+                    </motion.a>
+                  )}
                 </div>
               </div>
               
               {/* Project Description Section */}
-              <div className="p-6 lg:p-8">
-                <p className="text-gray-400 leading-relaxed mb-4">
-                  This project showcases modern web development practices with a focus on user experience and performance. 
-                  Built with cutting-edge technologies and best practices in mind.
-                </p>
+              <div className="p-6 lg:p-8 space-y-4">
+                {project.description && (
+                  <div>
+                    <span className="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-1">What it does</span>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                )}
+
+                {project.built && (
+                  <div>
+                    <span className="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-1">Built & Implementation</span>
+                    <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                      {project.built}
+                    </p>
+                  </div>
+                )}
                 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'].map((tech, i) => (
-                    <span 
-                      key={tech}
-                      className="px-3 py-1 text-sm font-medium bg-black/40 backdrop-blur-sm text-gray-300 rounded-full border border-white/10 transition-colors group-hover:border-white/20"
-                      style={{ animationDelay: `${i * 100}ms` }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="pt-2">
+                  <div className="flex flex-wrap gap-2">
+                    {(project.tech || ['React', 'TypeScript', 'Tailwind CSS']).map((tech) => (
+                      <span 
+                        key={tech}
+                        className="px-3 py-1 text-xs font-medium bg-black/40 backdrop-blur-sm text-gray-300 rounded-lg border border-white/10 transition-colors group-hover:border-white/25"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Glow Effects */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                 <div 
-                  className="absolute inset-0 blur-xl opacity-20"
+                  className="absolute inset-0 blur-[100px] opacity-20"
                   style={{
                     background: `radial-gradient(circle at 50% 50%, ${project.theme === '#FEFFFE' ? '#8A39EA' : project.theme}, transparent 70%)`
                   }}
@@ -198,57 +209,6 @@ function AllProjects() {
               </div>
             </div>
           </MagicCard>
-        </div>
-
-        {/* Image Section */}
-        <div className="flex-1">
-          <div className="relative h-64 lg:h-full min-h-[400px] rounded-xl overflow-hidden group/image">
-            <motion.img 
-              src={project.image} 
-              alt={project.title}
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-            />
-            
-            {/* Overlay Effects */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
-            {/* Floating Action on Image */}
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-              <div 
-                className="w-12 h-12 rounded-full backdrop-blur-xl border border-white/20 flex items-center justify-center"
-                style={{
-                  background: `radial-gradient(circle, ${project.theme === '#FEFFFE' ? '#8A39EA' : project.theme}40, transparent 70%)`
-                }}
-              >
-                <ExternalLink className="w-5 h-5 text-white" />
-              </div>
-            </div>
-            
-            {/* Bottom Project Stats */}
-            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-              <div className="flex justify-between items-center">
-                <div className="flex gap-2">
-                  <div className="px-3 py-1 text-xs font-medium bg-black/80 backdrop-blur-sm text-white rounded-full border border-white/20">
-                    ⭐ Featured
-                  </div>
-                  <div className="px-3 py-1 text-xs font-medium bg-black/80 backdrop-blur-sm text-white rounded-full border border-white/20">
-                    🚀 Live
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Border Beam for Image */}
-            <BorderBeam 
-              duration={12} 
-              size={250}
-              colorFrom={project.theme === '#FEFFFE' ? '#8A39EA' : project.theme}
-              colorTo={project.theme === '#FEFFFE' ? '#FE8BBB' : project.theme}
-              className="opacity-0 group-hover:opacity-60 transition-opacity duration-700"
-            />
-          </div>
         </div>
       </motion.div>
     );
@@ -307,13 +267,12 @@ function AllProjects() {
           <div className="max-w-4xl mx-auto">
             <WordPullUp text="ALL PROJECTS" />
             <motion.p 
-              className="text-xl text-gray-400 mt-6 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl text-gray-400 mt-6 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
-              A comprehensive showcase of my work, featuring cutting-edge web applications, 
-              innovative solutions, and creative implementations.
+              A showcase of full-stack platforms, real-time microservices, AI systems, and interactive applications.
             </motion.p>
           </div>
         </motion.div>
@@ -326,7 +285,7 @@ function AllProjects() {
           className="space-y-16 lg:space-y-24"
         >
           {(projects as Project[]).map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
+            <ProjectCard key={index} project={project} />
           ))}
         </motion.div>
 
@@ -345,13 +304,13 @@ function AllProjects() {
             <p className="text-gray-400 mb-8 leading-relaxed">
               I'm always open to discussing new opportunities and exciting projects.
             </p>
-            <Link 
-              to="/#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105"
+            <a 
+              href="mailto:anshbhatt140@gmail.com"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-white/10 to-white/20 hover:from-white/20 hover:to-white/30 border border-white/20 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               <span>Get In Touch</span>
               <ExternalLink className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </motion.div>
       </div>
@@ -362,4 +321,4 @@ function AllProjects() {
   );
 }
 
-export default AllProjects; 
+export default AllProjects;

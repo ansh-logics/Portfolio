@@ -183,9 +183,9 @@ function Hero() {
                       transition={{ duration: 0.6, delay: 0.2 }}
                       className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-6 py-2 text-sm text-gray-300 backdrop-blur-sm"
                     >
-                      <span className="mr-2">🎓</span>
+                      <span className="mr-2">⚡</span>
                       <SparklesText className="text-sm font-medium">
-                        CS Student • Web Developer Intern • Freelancer
+                        Full-Stack Developer • GDG on Campus Lead • AI & Cloud
                       </SparklesText>
                     </motion.div>
 
@@ -198,16 +198,16 @@ function Hero() {
                         className="space-y-4"
                       >
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                          Crafting Innovative
+                          Crafting Scalable &
                           <span className="block bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                            Web Solutions
+                            Intelligent Web Platforms
                           </span>
                         </h1>
 
                         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                          Computer Science student & Web Developer Intern building modern applications with
-                          <span className="text-gray-300 font-medium"> JavaScript, Python, React & Next.js</span>.
-                          Award-winning developer from national competitions.
+                          Full-stack developer building product-focused web applications, REST APIs, microservices,
+                          real-time systems, and AI-enabled platforms with
+                          <span className="text-gray-300 font-medium"> React, Next.js, Python, PostgreSQL, and Docker</span>.
                         </p>
                       </motion.div>
                     </div>
@@ -246,38 +246,54 @@ function Hero() {
                       className="pt-8 border-t border-white/10 w-full"
                     >
                       <p className="text-xs text-gray-500 text-center mb-4 uppercase tracking-wide">
-                        Technologies & Achievements
+                        Core Technologies & Recognition
                       </p>
                       <div className="space-y-3">
-                        <div className="flex flex-wrap justify-center items-center gap-4 opacity-60">
-                          {['JavaScript', 'Python', 'React', 'Next.js', 'Flask', 'MongoDB'].map((tech, index) => (
+                        <div className="flex flex-wrap justify-center items-center gap-3 opacity-80">
+                          {['React', 'Next.js', 'TypeScript', 'Python', 'FastAPI', 'Node.js', 'PostgreSQL', 'Docker'].map((tech, index) => (
                             <motion.span
                               key={tech}
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
-                              className="text-sm text-gray-400 font-medium px-3 py-1 rounded-full bg-white/5 border border-white/10"
+                              transition={{ duration: 0.4, delay: 1.4 + index * 0.08 }}
+                              className="text-xs sm:text-sm text-gray-300 font-medium px-3 py-1 rounded-full bg-white/5 border border-white/10"
                             >
                               {tech}
                             </motion.span>
                           ))}
                         </div>
-                        <div className="flex flex-wrap justify-center items-center gap-4 opacity-50">
+                        <div className="flex flex-wrap justify-center items-center gap-3 opacity-75">
                           <motion.span
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 2.0 }}
-                            className="text-xs text-gray-500 font-medium px-2 py-1 rounded-full bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20"
+                            className="text-xs text-gray-400 font-medium px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20"
                           >
-                            🏆 AWS Young Builders Challenge Top 100
+                            ⭐ GDG on Campus Lead (2025–26)
                           </motion.span>
                           <motion.span
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 2.1 }}
-                            className="text-xs text-gray-500 font-medium px-2 py-1 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
+                            className="text-xs text-gray-400 font-medium px-3 py-1 rounded-full bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20"
                           >
-                            🏆 Microsoft Top 20
+                            🏆 AWS Young Builders Challenge Top 11
+                          </motion.span>
+                          <motion.span
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: 2.2 }}
+                            className="text-xs text-gray-400 font-medium px-3 py-1 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20"
+                          >
+                            🏆 BOB × Microsoft Top 20
+                          </motion.span>
+                          <motion.span
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: 2.3 }}
+                            className="text-xs text-gray-400 font-medium px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20"
+                          >
+                            🚀 Smart India Hackathon 2025
                           </motion.span>
                         </div>
                       </div>
