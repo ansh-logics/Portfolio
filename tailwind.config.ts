@@ -11,6 +11,21 @@ export default {
       colors: {
         'bg-dark': '#1F1E1E',
         'bg-glass': 'rgba(255, 255, 255, 0.2)',
+        ink: {
+          bg: '#07090a',
+          surface: '#0d1110',
+          line: '#1c2420',
+          text: '#d7e0da',
+          muted: '#6f7d75',
+        },
+        accent: {
+          DEFAULT: '#7cff9b',
+          amber: '#ffb454',
+        },
+      },
+      fontFamily: {
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
       },
       linearGradients: {
         'bg-top': ['180deg', '#0e1016 0%', 'transparent 50%'],
@@ -87,9 +102,6 @@ export default {
           "0%": { transform: "translateY(-50%)" },
           "100%": { transform: "translateY(0)" },
         },
-      },
-      screens:{
-        'sm' : '500px'
       },
     },
 
